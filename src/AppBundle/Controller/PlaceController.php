@@ -19,7 +19,21 @@ class PlaceController extends Controller
      */
     public function getPlacesAction(Request $request)
     {
+        $places = $this->getDoctrine()->getRepository('AppBundle:Address')->findAll();
 
+        $formatted = [];
+        foreach ($places as $place) {
+            $formatted[] = [
+                'id' => $place->getId(),
+                'number' => $place->getNumber(),
+                'path' => $place->getPath(),
+                'postcode' => $place->getZipcode(),
+                'city' => $place->getCity(),
+                'country' => $place->getCountry()
+            ];
+        }
+
+        return new JsonResponse($formatted);
     }
 
 }

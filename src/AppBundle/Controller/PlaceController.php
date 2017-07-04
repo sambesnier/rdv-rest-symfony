@@ -36,4 +36,19 @@ class PlaceController extends Controller
         return new JsonResponse($formatted);
     }
 
+    /**
+     * @Route(
+     *     "/new-place",
+     *     name="new_place"
+     * )
+     * @Method({"POST"})
+     *
+     * @param Request $request
+     * @return JsonResponse
+     */
+    public function postAction(Request $request)
+    {
+        return new JsonResponse([$request->get('test')]);
+    }
+
 }

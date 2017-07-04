@@ -38,13 +38,6 @@ class Address
     /**
      * @var string
      *
-     * @ORM\Column(name="pathType", type="string", length=255)
-     */
-    private $pathType;
-
-    /**
-     * @var string
-     *
      * @ORM\Column(name="city", type="string", length=255)
      */
     private $city;
@@ -129,30 +122,6 @@ class Address
     public function getPath()
     {
         return $this->path;
-    }
-
-    /**
-     * Set pathType
-     *
-     * @param string $pathType
-     *
-     * @return Address
-     */
-    public function setPathType($pathType)
-    {
-        $this->pathType = $pathType;
-
-        return $this;
-    }
-
-    /**
-     * Get pathType
-     *
-     * @return string
-     */
-    public function getPathType()
-    {
-        return $this->pathType;
     }
 
     /**

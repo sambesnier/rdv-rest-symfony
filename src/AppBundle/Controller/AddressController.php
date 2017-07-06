@@ -26,6 +26,30 @@ class AddressController extends Controller
     }
 
     /**
+     * @Rest\Get(
+     *     "/address/{id}"
+     * )
+     *
+     * @Rest\View()
+     *
+     * @param Request $request
+     * @return AddressController|Address|\FOS\RestBundle\View\View|object
+     */
+    public function getOneAddressAction(Request $request)
+    {
+        $address = $this->getDoctrine()
+            ->getRepository("AppBundle:Address")
+            ->find($request->get('id'));
+
+        if (empty($address)) {
+            return \FOS\RestBundle\View\View::create(['message' => 'Place not found'], Response::HTTP_NOT_FOUND);
+        }
+
+        return $address;
+
+    }
+
+    /**
      *
      * @Rest\View(statusCode=Response::HTTP_CREATED)
      *
@@ -113,7 +137,7 @@ class AddressController extends Controller
             ->find($request->get('id'));
 
         if (empty($address)) {
-            return new JsonResponse(['message' => 'Place not found'], Response::HTTP_NOT_FOUND);
+            return \FOS\RestBundle\View\View::create(['message' => 'Place not found'], Response::HTTP_NOT_FOUND);
         }
 
         $form = $this->createForm(AddressType::class, $address);

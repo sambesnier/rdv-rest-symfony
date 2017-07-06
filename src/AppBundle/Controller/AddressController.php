@@ -34,7 +34,7 @@ class AddressController extends Controller
      * )
      *
      * @param Request $request
-     * @return JsonResponse
+     * @return Address|\Symfony\Component\Form\Form|JsonResponse
      */
     public function postAddressAction(Request $request)
     {
@@ -51,6 +51,28 @@ class AddressController extends Controller
             return $address;
         } else {
             return $form;
+        }
+    }
+
+    /**
+     * @Rest\View(statusCode=Response::HTTP_NO_CONTENT)
+     *
+     * @Rest\Delete(
+     *     "/address/{id}"
+     * )
+     *
+     * @param Request $request
+     */
+    public function removeAddressAction(Request $request)
+    {
+        $address = $this->getDoctrine()
+                        ->getRepository("AppBundle:Address")
+                        ->find($request->get('id'));
+
+        $em = $this->getDoctrine()->getManager();
+        if ($address) {
+            $em->remove($address);
+            $em->flush();
         }
     }
 

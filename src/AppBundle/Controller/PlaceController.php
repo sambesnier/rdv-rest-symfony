@@ -2,13 +2,13 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Entity\Address;
 use AppBundle\Entity\Place;
 use FOS\RestBundle\Controller\Annotations as Rest;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 class PlaceController extends Controller
 {
@@ -20,24 +20,25 @@ class PlaceController extends Controller
      */
     public function getPlacesAction(Request $request)
     {
-        $places = $this->getDoctrine()->getRepository('AppBundle:Address')->findAll();
+        $places = $this->getDoctrine()->getRepository('AppBundle:Place')->findAll();
 
         return $places;
     }
 
     /**
-     * @Route(
-     *     "/new-place",
-     *     name="new_place"
+     *
+     * @Rest\View(statusCode=Response::HTTP_CREATED)
+     *
+     * @Rest\Post(
+     *     "/places"
      * )
-     * @Method({"POST"})
      *
      * @param Request $request
      * @return JsonResponse
      */
-    public function postAction(Request $request)
+    public function postPlacesAction(Request $request)
     {
-        return new JsonResponse([$request->get('test')]);
+
     }
 
 }

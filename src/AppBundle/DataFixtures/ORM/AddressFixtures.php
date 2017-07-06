@@ -35,6 +35,16 @@ class AddressFixtures extends AbstractFixture implements OrderedFixtureInterface
         //$address->addPlace($this->getReference('name'));
         $manager->persist($address);
         $manager->flush();
+
+        $address2 = new Address();
+        $address2->setNumber($faker->numberBetween(1, 200));
+        $address2->setCity($faker->city);
+        $address2->setCountry("France");
+        $address2->setZipcode($faker->postcode);
+        $address2->setPath($faker->streetName);
+        //$address2->addPlace($this->getReference('name'));
+        $manager->persist($address2);
+        $manager->flush();
     }
 
     /**

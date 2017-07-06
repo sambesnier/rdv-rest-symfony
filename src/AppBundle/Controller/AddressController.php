@@ -76,4 +76,71 @@ class AddressController extends Controller
         }
     }
 
+    /**
+     * @Rest\View()
+     *
+     * @Rest\Put(
+     *     "/address/{id}"
+     * )
+     *
+     * @param Request $request
+     * @return Address|object|JsonResponse
+     */
+    public function putAddressAction(Request $request)
+    {
+        $address = $this->getDoctrine()
+                        ->getRepository("AppBundle:Address")
+                        ->find($request->get('id'));
+
+        if (empty($address)) {
+            return new JsonResponse(['message' => 'Place not found'], Response::HTTP_NOT_FOUND);
+        }
+
+        $form = $this->createForm(AddressType::class, $address);
+
+        $form->submit($request->request->all());
+
+        if ($form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $em->merge($address);
+            $em->flush();
+            return $address;
+        } else {
+            return $form;
+        }
+    }
+
+    /**
+     * @Rest\View()
+     *
+     * @Rest\Patch(
+     *     "/address/{id}"
+     * )
+     *
+     * @param Request $request
+     * @return Address|object|JsonResponse
+     */
+    public function patchAddressAction(Request $request)
+    {
+        $address = $this->getDoctrine()
+            ->getRepository("AppBundle:Address")
+            ->find($request->get('id'));
+
+        if (empty($address)) {
+            return new JsonResponse(['message' => 'Place not found'], Response::HTTP_NOT_FOUND);
+        }
+
+        $form = $this->createForm(AddressType::class, $address);
+
+        $form->submit($request->request->all(), false);
+
+        if ($form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $em->merge($address);
+            $em->flush();
+            return $address;
+        } else {
+            return $form;
+        }
+    }
 }

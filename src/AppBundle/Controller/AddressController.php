@@ -88,26 +88,7 @@ class AddressController extends Controller
      */
     public function putAddressAction(Request $request)
     {
-        $address = $this->getDoctrine()
-                        ->getRepository("AppBundle:Address")
-                        ->find($request->get('id'));
-
-        if (empty($address)) {
-            return new JsonResponse(['message' => 'Place not found'], Response::HTTP_NOT_FOUND);
-        }
-
-        $form = $this->createForm(AddressType::class, $address);
-
-        $form->submit($request->request->all());
-
-        if ($form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->merge($address);
-            $em->flush();
-            return $address;
-        } else {
-            return $form;
-        }
+        $this->updateAddress($request, true);
     }
 
     /**
@@ -122,6 +103,11 @@ class AddressController extends Controller
      */
     public function patchAddressAction(Request $request)
     {
+        $this->updateAddress($request, false);
+    }
+
+    public function updateAddress(Request $request, $clearMissing)
+    {
         $address = $this->getDoctrine()
             ->getRepository("AppBundle:Address")
             ->find($request->get('id'));
@@ -132,7 +118,7 @@ class AddressController extends Controller
 
         $form = $this->createForm(AddressType::class, $address);
 
-        $form->submit($request->request->all(), false);
+        $form->submit($request->request->all(), $clearMissing);
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();

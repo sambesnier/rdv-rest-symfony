@@ -2,6 +2,3 @@ app:
     resource: '@AppBundle/Controller/'
     type: annotation
 
-places:
-    type:     rest
-    resource: AppBundle\Controller\PlaceController

@@ -1,6 +1,6 @@
 <?php
 
-namespace AppBundle\Controller;
+namespace AppBundle\Controller\Address;
 
 use AppBundle\Entity\Address;
 use AppBundle\Form\AddressType;
@@ -16,7 +16,7 @@ class AddressController extends Controller
      * @Rest\Get(
      *     "/address"
      * )
-     * @Rest\View()
+     * @Rest\View(serializerGroups={"address"})
      */
     public function getAddressAction(Request $request)
     {
@@ -30,7 +30,7 @@ class AddressController extends Controller
      *     "/address/{id}"
      * )
      *
-     * @Rest\View()
+     * @Rest\View(serializerGroups={"address"})
      *
      * @param Request $request
      * @return AddressController|Address|\FOS\RestBundle\View\View|object

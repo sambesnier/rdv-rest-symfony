@@ -1,0 +1,27 @@
+AppBundle\Entity\Place:
+    attributes:
+        id:
+            groups: ['place', 'address']
+        name:
+            groups: ['place', 'address']
+        rdvDuration:
+            groups: ['place', 'address']
+        address:
+            groups: ['place']
+
+AppBundle\Entity\Address:
+    attributes:
+        id:
+            groups: ['place', 'address']
+        number:
+            groups: ['place', 'address']
+        path:
+            groups: ['place', 'address']
+        city:
+            groups: ['place', 'address']
+        zipcode:
+            groups: ['place', 'address']
+        country:
+            groups: ['place', 'address']
+        places:
+            groups: ['address']

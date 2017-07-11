@@ -22,6 +22,13 @@ class Place
     private $id;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="name", type="string")
+     */
+    private $name;
+
+    /**
      * @var int
      *
      * @ORM\Column(name="rdvDuration", type="integer")
@@ -33,7 +40,8 @@ class Place
      *
      * @ORM\ManyToOne(
      *     targetEntity="AppBundle\Entity\Address",
-     *     inversedBy="places"
+     *     inversedBy="places",
+     *     cascade={"persist"}
      * )
      */
     private $address;
@@ -95,5 +103,29 @@ class Place
     public function getAddress()
     {
         return $this->address;
+    }
+
+    /**
+     * Set name
+     *
+     * @param string $name
+     *
+     * @return Place
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    /**
+     * Get name
+     *
+     * @return string
+     */
+    public function getName()
+    {
+        return $this->name;
     }
 }

@@ -4,6 +4,7 @@ namespace AppBundle\Controller\Place;
 
 use AppBundle\Entity\Address;
 use AppBundle\Entity\Place;
+use AppBundle\Entity\Week;
 use AppBundle\Form\PlaceType;
 use FOS\RestBundle\Controller\Annotations as Rest;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -30,7 +31,7 @@ class PlaceController extends Controller
 
     /**
      *
-     * @Rest\View(statusCode=Response::HTTP_CREATED)
+     * @Rest\View(statusCode=Response::HTTP_CREATED, serializerGroups={"place", "week"})
      *
      * @Rest\Post(
      *     "/places"
@@ -49,6 +50,17 @@ class PlaceController extends Controller
 
         if ($form->isValid()) {
             $em = $this->get('doctrine.orm.entity_manager');
+            // TODO : setup agenda
+/*
+            $week = new Week();
+            $today = new \DateTime('now');
+            $numberOfWeek = $today->format("W");
+            $week->setWeekNumber(intval($numberOfWeek));
+            $week->setYear(intval($today->format("Y")));
+
+            $week->setPlace($place);
+            $place->addWeek($week);
+*/
             $em->persist($place);
             $em->flush();
             return $place;

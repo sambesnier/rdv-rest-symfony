@@ -8,6 +8,17 @@ AppBundle\Entity\Place:
             groups: ['place', 'address']
         address:
             groups: ['place']
+        weeks:
+            groups: ['week']
+
+AppBundle\Entity\Week:
+    attributes:
+        id:
+            groups: ['week']
+        year:
+            groups: ['week']
+        weekNumber:
+            groups: ['week', 'place']
 
 AppBundle\Entity\Address:
     attributes:

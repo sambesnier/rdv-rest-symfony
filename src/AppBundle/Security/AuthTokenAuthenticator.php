@@ -78,7 +78,8 @@ class AuthTokenAuthenticator implements SimplePreAuthenticatorInterface, Authent
     {
         $autorizedPaths = [
             'post_user',
-            'post_auth_token'
+            'post_auth_token',
+            'get_places'
         ];
 
         $currentRoute = $request->attributes->get('_route');

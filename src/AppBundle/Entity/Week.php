@@ -45,6 +45,15 @@ class Week
      */
     private $days;
 
+    /**
+     * @var Place
+     *
+     * @ORM\ManyToOne(
+     *     targetEntity="AppBundle\Entity\Place",
+     *     inversedBy="weeks"
+     * )
+     */
+    private $place;
 
     /**
      * Get id
@@ -126,5 +135,29 @@ class Week
     public function getDays()
     {
         return $this->days;
+    }
+
+    /**
+     * Set place
+     *
+     * @param \AppBundle\Entity\Place $place
+     *
+     * @return Week
+     */
+    public function setPlace(\AppBundle\Entity\Place $place = null)
+    {
+        $this->place = $place;
+
+        return $this;
+    }
+
+    /**
+     * Get place
+     *
+     * @return \AppBundle\Entity\Place
+     */
+    public function getPlace()
+    {
+        return $this->place;
     }
 }

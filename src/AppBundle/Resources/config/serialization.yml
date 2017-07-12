@@ -25,3 +25,14 @@ AppBundle\Entity\Address:
             groups: ['place', 'address']
         places:
             groups: ['address']
+
+AppBundle\Entity\User:
+    attributes:
+        id:
+            groups: ['user']
+        name:
+            groups: ['user']
+        firstname:
+            groups: ['user']
+        email:
+            groups: ['user']

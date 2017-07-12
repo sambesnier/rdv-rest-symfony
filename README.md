@@ -1,6 +1,6 @@
 Rendez Vous rest api
 ========
-Server side of an Appointment managing app. This is a secured rest api based on FOSRestBundle and Symfony.
+Server side of an Appointment managing app. This is a secured rest api based on FOSRestBundle and Symfony.  
 Client side is an Angular 4 app.
 
 ## Installation

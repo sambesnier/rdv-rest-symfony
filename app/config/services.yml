@@ -7,3 +7,25 @@ services:
     #service_name:
     #    class: AppBundle\Directory\ClassName
     #    arguments: ['@another_service_name', 'plain_value', '%parameter_name%']
+
+    auth_token_user_provider:
+            class: AppBundle\Security\AuthTokenProvider
+            arguments: ["@auth_token_repository", "@user_repository"]
+            public:    false
+
+    auth_token_repository:
+            class:   Doctrine\ORM\EntityManager
+            factory: ["@doctrine.orm.entity_manager", "getRepository"]
+            arguments: ["AppBundle:AuthToken"]
+            public: true
+
+    user_repository:
+            class:   Doctrine\ORM\EntityManager
+            factory: ["@doctrine.orm.entity_manager", "getRepository"]
+            arguments: ["AppBundle:User"]
+            public: true
+
+    auth_token_authenticator:
+            class:     AppBundle\Security\AuthTokenAuthenticator
+            arguments: ["@security.http_utils"]
+            public:    false

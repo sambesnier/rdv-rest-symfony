@@ -76,8 +76,14 @@ class AuthTokenAuthenticator implements SimplePreAuthenticatorInterface, Authent
 
     public function createToken(Request $request, $providerKey)
     {
-        $targetUrl = '/auth-tokens';
-        if ($request->getMethod() === "POST" && $this->httpUtils->checkRequestPath($request, $targetUrl)) {
+        $autorizedPaths = [
+            'post_user',
+            'post_auth_token'
+        ];
+
+        $currentRoute = $request->attributes->get('_route');
+
+        if (in_array($currentRoute, $autorizedPaths)) {
             return;
         }
 

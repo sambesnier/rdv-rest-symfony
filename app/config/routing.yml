@@ -1,3 +1,19 @@
-app:
-    resource: '@AppBundle/Controller/'
-    type: annotation
+places:
+    type: rest
+    resource: '@AppBundle/Controller/Place/PlaceController.php'
+
+users:
+    type: rest
+    resource: '@AppBundle/Controller/User/UserController.php'
+
+auth-tokens:
+    type: rest
+    resource: '@AppBundle/Controller/User/AuthTokenController.php'
+
+address:
+    type: rest
+    resource: '@AppBundle/Controller/Address/AddressController.php'
+
+place-address:
+    type: rest
+    resource: '@AppBundle/Controller/Place/AddressController.php'

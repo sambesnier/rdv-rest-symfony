@@ -29,15 +29,13 @@ AppBundle\Entity\Address:
 AppBundle\Entity\User:
     attributes:
         id:
-            groups: ['user', 'preference', 'auth-token']
+            groups: ['user', 'auth-token']
         name:
-            groups: ['user', 'preference', 'auth-token']
+            groups: ['user', 'auth-token']
         firstname:
-            groups: ['user', 'preference', 'auth-token']
+            groups: ['user', 'auth-token']
         email:
-            groups: ['user', 'preference', 'auth-token']
-        preferences:
-            groups: ['user']
+            groups: ['user', 'auth-token']
 
 AppBundle\Entity\AuthToken:
     attributes:

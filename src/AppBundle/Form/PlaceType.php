@@ -14,7 +14,8 @@ class PlaceType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('rdvDuration');
+            ->add('rdvDuration')
+            ->add('name');
     }
     
     /**

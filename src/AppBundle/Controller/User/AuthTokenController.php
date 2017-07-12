@@ -49,6 +49,14 @@ class AuthTokenController extends Controller
             return $this->invalidCredentials();
         }
 
+        $previousToken = $em->getRepository('AppBundle:AuthToken')
+            ->findOneByUser($user);
+
+        if (!empty($previousToken)) {
+            $em->remove($previousToken);
+            $em->flush();
+        }
+
         $authToken = new AuthToken();
         $authToken->setValue(base64_encode(random_bytes(50)));
         $authToken->setCreatedAt(new \DateTime('now'));
